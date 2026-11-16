@@ -539,7 +539,6 @@ a.category { text-decoration: none; }
 }
 
 @media (max-width: 720px) {
-  html { overscroll-behavior-y: none; }
   .site-header { position: fixed; inset: 0 0 auto; }
   .site-content { padding-top: var(--site-header-height, calc(63px + env(safe-area-inset-top, 0px))); }
 }
