@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>iStoreGrozny — варианты шапки</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f1f2f4;color:#1d1d1f;font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{width:min(1200px,calc(100% - 32px));margin:40px auto}h1{font-size:clamp(32px,5vw,54px);letter-spacing:-.05em;margin:0 0 24px}h2{margin:0 0 12px;font-size:22px;letter-spacing:-.035em}.comparison{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,350px);gap:16px}.sample{margin:0 0 32px}.viewport{min-width:0;overflow:hidden;border-radius:16px;border:1px solid #dedfe3;background:#fff}.viewport>small{display:block;padding:8px 14px;color:#55565b}.bar{--surface:#242426;--ink:#fff;--sub:#dadade;--line:#ffffff38;--pill:#ffffff12;display:grid;align-items:center;gap:14px;padding:16px;background:var(--surface);color:var(--ink)}.mark{display:inline-flex;width:max-content;border:1px solid currentColor;border-radius:8px;padding:3px}.mark img{width:102px;height:auto;display:block}.menu{display:flex;justify-content:center;align-items:center;gap:clamp(9px,1.6vw,22px);flex-wrap:wrap}.bar a{color:inherit;text-decoration:none}.menu a{white-space:nowrap}.menu a:hover{text-decoration:underline;text-underline-offset:5px}.bar a:focus-visible,.bar summary:focus-visible{outline:2px solid currentColor;outline-offset:3px}.contacts{display:grid;gap:3px;justify-self:end;font-size:13px;white-space:nowrap}.contact{display:flex;align-items:center;gap:6px}.contact img{width:14px;height:14px}.hours{color:var(--sub)}.one{grid-template-columns:auto 1fr auto}.two{grid-template-columns:1fr auto 1fr}.two .mark{grid-column:2;grid-row:1}.two .contacts{grid-column:3;grid-row:1}.two .menu{grid-column:1/-1;border-top:1px solid var(--line);padding-top:12px}.three{--surface:#f7f7f9;--ink:#1d1d1f;--sub:#525258;--line:#d9d9dd;--pill:#e9e9ed;grid-template-columns:auto 1fr auto}.three img{filter:invert(1)}.three .menu{padding:8px;border-radius:999px;background:var(--pill)}.four{grid-template-columns:auto 1fr auto;--surface:#16171a}.four .contacts>a{border:1px solid var(--line);padding:6px 9px;border-radius:20px}.four .hours{justify-content:center}.five{--surface:#303237;grid-template-columns:auto 1fr}.five .contacts{display:flex;gap:12px}.five .menu{grid-column:1/-1;justify-content:space-between;background:#222328;padding:9px 12px;border-radius:8px}.mobile .bar{grid-template-columns:auto 1fr;gap:10px;padding:12px}.mobile .bar .mark{grid-column:1;grid-row:1}.mobile .bar .contacts{grid-column:2;grid-row:1;display:grid;gap:3px}.mobile .bar .menu{grid-column:1/-1;justify-content:space-between;font-size:13px}.mobile .four .menu{display:none}.mobile details{grid-column:1/-1;border-top:1px solid var(--line);padding-top:8px}.mobile summary{cursor:pointer}.mobile .four details .menu{display:flex;margin-top:8px;justify-content:flex-start}@media(max-width:900px){.comparison{grid-template-columns:1fr}.viewport.mobile{max-width:350px}}@media(max-width:600px){.viewport:not(.mobile) .bar{grid-template-columns:1fr auto}.viewport:not(.mobile) .bar .menu{grid-column:1/-1;grid-row:2}.viewport:not(.mobile) .bar .mark{grid-column:1;grid-row:1}.viewport:not(.mobile) .bar .contacts{grid-column:2;grid-row:1;display:grid}}
+</style>
+</head>
+<body><main><h1>Пять вариантов шапки</h1><div id="samples"></div></main>
+<script>
+const variants = [
+  ['one','Графитовая в одну строку'],
+  ['two','Логотип по центру'],
+  ['three','Светлая с отдельной панелью меню'],
+  ['four','Звонок отдельной кнопкой'],
+  ['five','Меню на второй полосе'],
+];
+const links = [['Главная','home'],['Каталог','catalog'],['Доставка','delivery'],['Адрес','contacts']];
+const menu = '<nav class="menu" aria-label="Основное меню">'+links.map(([title,id])=>'<a href="/#'+id+'">'+title+'</a>').join('')+'</nav>';
+const logo = '<a class="mark" href="/"><img src="/assets/logo-white.png" alt="iStoreGrozny — главная"></a>';
+const contacts = '<div class="contacts"><a class="contact" href="tel:+79380000391"><img src="/assets/phone.png" alt="">+7 (938) 000-03-91</a><span class="contact hours"><img src="/assets/clock.png" alt="">09:00–21:00</span></div>';
+function preview(style, mobile) {
+  const navigation = mobile && style === 'four' ? '<details><summary>Меню</summary>'+menu+'</details>' : menu;
+  return '<div class="viewport'+(mobile?' mobile':'')+'"><small>'+(mobile?'Телефон':'Компьютер')+'</small><header class="bar '+style+'">'+logo+navigation+contacts+'</header></div>';
+}
+document.querySelector('#samples').innerHTML=variants.map(([style,title],i)=>'<section class="sample"><h2>'+(i+1)+'. '+title+'</h2><div class="comparison">'+preview(style,false)+preview(style,true)+'</div></section>').join('');
+</script></body></html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>iStoreGrozny — мобильные меню</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f3f5;color:#242426;font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{width:min(1120px,calc(100% - 32px));margin:32px auto}h1{font-size:clamp(28px,5vw,48px);letter-spacing:-.04em}h2{font-size:18px;margin:0 0 10px}.samples{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px}.frame{min-height:400px}.frame{position:relative;isolation:isolate;overflow:hidden;border:1px solid #ddd;border-radius:18px;background:white;height:400px}.top{position:relative;z-index:3;background:#242426;color:white;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px}.logo{width:92px;border:1px solid white;border-radius:6px;padding:3px}.contact{color:white;text-decoration:none;font-size:11px;white-space:nowrap}.contact small{display:block;font-size:inherit;color:#ddd}.toggle,.close{position:relative;display:grid;place-content:center;min-width:40px;height:40px;border:1px solid #ffffff59;border-radius:10px;background:transparent;color:#fff;cursor:pointer;transition:background .16s,scale .16s}.toggle:active,.close:active,.links a:active{scale:.96;background:#ffffff35}.toggle i,.toggle i::before,.toggle i::after{display:block;width:16px;height:2px;border-radius:2px;background:currentColor;transition:transform .24s,opacity .24s}.toggle i{position:relative}.toggle i::before,.toggle i::after{position:absolute;content:"";inset:0}.toggle i::before{transform:translateY(-5px)}.toggle i::after{transform:translateY(5px)}.open .toggle i{background:transparent}.open .toggle i::before{transform:rotate(45deg)}.open .toggle i::after{transform:rotate(-45deg)}.hero{margin:12px;border-radius:12px;overflow:hidden;position:relative;background:#e9edf4}.hero img{width:100%;height:220px;object-fit:cover;display:block}.hero span{position:absolute;bottom:12px;left:12px;background:white;border-radius:12px;padding:6px 10px;font-weight:600}.links{position:absolute;z-index:2;background:#242426;color:#fff;inset:64px 0 auto;padding:8px 12px 12px;visibility:hidden;opacity:0;transition:transform .3s,opacity .25s,visibility .3s;transform:translateY(-12px)}.open .links{transform:none;opacity:1;visibility:visible}.links a{display:block;color:inherit;text-decoration:none;padding:9px 12px;border-radius:8px;transition:background .16s,scale .16s}.links a:hover{background:#ffffff1a}.shade{position:absolute;inset:64px 0 0;background:#0006;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}.open .shade{opacity:1;visibility:visible}.drawer .links{inset:64px 0 0 auto;width:75%;transform:translateX(100%)}.drawer.open .links{transform:none}.drawer .toggle i::after{width:10px;right:0;left:auto}.drawer.open .toggle i::after{width:16px}.sheet .links{inset:auto 0 0;border-radius:18px 18px 0 0;transform:translateY(100%);padding-top:20px}.sheet.open .links{transform:none}.sheet .toggle{border-radius:50%}.sheet .toggle i{height:0}.sheet.open .toggle i{height:2px}.overlay .links{inset:64px 0 0;display:grid;align-content:center;text-align:center;font-size:21px;transform:scale(1.04)}.overlay.open .links{transform:none}.overlay .toggle{border:none;font:inherit;padding:0 6px}.popover .links{inset:70px 10px auto auto;width:70%;border:1px solid #ffffff40;border-radius:14px;transform:scale(.85) translateY(-5px);transform-origin:top right;box-shadow:0 10px 30px #0005}.popover.open .links{transform:none}.popover .toggle i,.popover .toggle i::before,.popover .toggle i::after{width:4px;height:4px}.popover .toggle i::before{transform:translateX(-6px)}.popover .toggle i::after{transform:translateX(6px)}.popover.open .toggle i::before,.popover.open .toggle i::after{width:16px;height:2px;left:-6px}.popover.open .toggle i::before{transform:rotate(45deg)}.popover.open .toggle i::after{transform:rotate(-45deg)}:focus-visible{outline:2px solid #9dbfff;outline-offset:2px}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+.hybrid .links{inset:auto 0 0;border-radius:18px 18px 0 0;transform:translateY(100%);padding-top:16px}
+.hybrid.open .links{transform:none}
+.hybrid.open .toggle i::after{width:16px}
+.hybrid .menu-contact{margin-top:6px;padding:8px 12px 0;border-top:1px solid #ffffff40}
+.hybrid .menu-contact a{padding:0}
+.hybrid .menu-contact a,.hybrid .menu-contact small{display:flex;align-items:center;gap:8px;font-size:14px}.hybrid .menu-contact small{color:#ddd;margin-top:5px}.hybrid .menu-contact img{width:15px;height:15px}
+.hybrid .toggle svg{width:20px;height:20px;display:block;overflow:visible}
+.hybrid .toggle path{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.hybrid .toggle path{transform-origin:10px 10px;transition:transform .24s ease,opacity .18s ease}
+.hybrid .burger-top{transform:translateY(-5px)}
+.hybrid .burger-bottom{transform:translate(3px,5px) scaleX(.625)}
+.hybrid.open .burger-top{transform:rotate(45deg)}
+.hybrid.open .burger-middle{opacity:0;transform:scaleX(.35)}
+.hybrid.open .burger-bottom{transform:rotate(-45deg)}
+.hybrid .menu-contact{margin-top:10px;padding:12px 12px 2px}
+.hybrid .menu-contact small{display:block;font-size:12px;color:#c9c9ce;margin:3px 0}
+.hybrid .menu-contact a{width:fit-content;font-size:15px;font-weight:600}
+.contacts-minimal .menu-contact a{font-size:19px;letter-spacing:-.03em}
+.contacts-button .menu-contact{text-align:center}
+.contacts-button .menu-contact a{width:100%;justify-content:center;background:#fff;color:#242426;padding:8px;border-radius:999px;margin:6px 0}
+.contacts-button .menu-contact img{filter:invert(1)}
+.contact-card{background:#363638;border:1px solid #ffffff19;border-radius:12px;padding:10px 12px}
+.contacts-card .menu-contact{border-top:0;padding-top:4px}
+.contacts-card .menu-contact a{width:100%;justify-content:space-between}
+.contacts-split .menu-contact{display:grid;grid-template-columns:1.4fr 1fr;gap:10px}
+.contacts-split .menu-contact>div+div{border-left:1px solid #ffffff40;padding-left:10px}
+.contacts-split .menu-contact a{font-size:14px;white-space:nowrap}
+.contacts-inline .menu-contact a{gap:12px;width:100%}
+.call-icon{display:grid;place-items:center;width:38px;height:38px;border:1px solid #ffffff60;border-radius:50%}
+.hybrid .menu-contact a:active{opacity:.75}
+</style></head><body><main><h1>Пять вариантов блока контактов</h1><div class="samples"></div></main>
+<script>
+const variants=[
+ ['minimal','1. Номер и график'],
+ ['button','2. Кнопка звонка'],
+ ['card','3. Контактная карточка'],
+ ['split','4. Две колонки'],
+ ['inline','5. Номер с круглой иконкой']
+];
+const phone='+7 (938) 000-03-91';
+const hours='09:00–21:00';
+const call=(label=phone)=>'<a href="tel:+79380000391">'+label+'</a>';
+const icon='<img src="../assets/phone.png" alt="">';
+const contactLayouts={
+ minimal:call()+'<small>Ежедневно, '+hours+'</small>',
+ button:'<small>Ежедневно, '+hours+'</small>'+call(icon+'Позвонить')+'<small>'+phone+'</small>',
+ card:'<div class="contact-card"><small>Связаться с магазином</small>'+call(phone+' <span aria-hidden="true">↗</span>')+'<small>Ежедневно, '+hours+'</small></div>',
+ split:'<div><small>Телефон</small>'+call()+'</div><div><small>Часы работы</small><span>'+hours+'</span></div>',
+ inline:call('<span class="call-icon">'+icon+'</span><span>'+phone+'<small>Ежедневно, '+hours+'</small></span>')
+};
+const links=[['Главная','home'],['Каталог','catalog'],['Доставка','delivery'],['Адрес','contacts']];
+document.querySelector('.samples').innerHTML=variants.map(([style,title])=>`<section><h2>${title}</h2><div class="frame hybrid contacts-${style}"><div class="top"><img class="logo" src="../assets/logo-white.png" alt="iStoreGrozny">${true?"":'<a class="contact" href="tel:+79380000391">+7 (938) 000-03-91<small>09:00–21:00</small></a>'}<button class="toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu-${style}">${style==='overlay'?'Меню':true?'<svg viewBox="0 0 20 20" aria-hidden="true"><path class="burger-top" d="M2 10h16"/><path class="burger-middle" d="M2 10h16"/><path class="burger-bottom" d="M2 10h16"/></svg>':'<i aria-hidden="true"></i>'}</button></div><div class="hero"><img src="../assets/hero.jpg" alt=""><span>Техника Apple в Грозном</span></div><div class="shade"></div><nav class="links" id="menu-${style}" aria-label="Основное меню" inert>${links.map(([label,id])=>`<a href="../index.html#${id}">${label}</a>`).join('')}<div class="menu-contact">${contactLayouts[style]}</div></nav></div></section>`).join('');
+for(const frame of document.querySelectorAll('.frame')){
+ const toggle=frame.querySelector('.toggle');
+ const nav=frame.querySelector('nav');
+ function setOpen(open){
+  frame.classList.toggle('open',open);
+  nav.inert=!open;
+  toggle.setAttribute('aria-expanded',String(open));
+  toggle.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню');
+  if(frame.classList.contains('overlay'))toggle.textContent=open?'Закрыть':'Меню';
+ }
+ toggle.addEventListener('click',()=>setOpen(toggle.getAttribute('aria-expanded')==='false'));
+ frame.querySelector('.shade').addEventListener('click',()=>setOpen(false));
+ frame.addEventListener('keydown',event=>{if(event.key==='Escape'){setOpen(false);toggle.focus();}});
+}
+document.querySelectorAll('.toggle').forEach(button=>button.click());
+</script></body></html>
+
+

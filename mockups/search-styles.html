@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Варианты поиска · iStoreGrozny</title>
+<style>
+
+*{box-sizing:border-box}body{margin:0;background:#ececef;color:#242426;font:14px system-ui,sans-serif}main{max-width:1280px;margin:auto;padding:20px}h1{font-size:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,335px),1fr));gap:20px}article{max-width:440px;background:white;border-radius:18px;padding:14px}h2{font-size:15px;margin:0 0 12px}.hero{height:180px;display:grid;align-content:center;padding:16px;background:#a1afbf url(../assets/carousel-iphone-mobile.jpg) center right/cover;border-radius:16px}.hero strong{font-size:30px}.hero p{max-width:52%;margin:6px 0 10px}.hero a{justify-self:start;background:#242426dd;color:white;padding:7px 11px;border-radius:20px}.insert{margin:14px 0 18px}a{color:inherit;text-decoration:none;transition:transform .16s ease,opacity .16s ease}a:active{transform:scale(.97);opacity:.75}a:focus-visible,input:focus-visible{outline:2px solid #48649b;outline-offset:2px}.shortcuts,.pair{display:grid;gap:7px}.shortcuts{grid-template-columns:repeat(3,1fr)}.pair{grid-template-columns:1fr 1fr}.tile{display:grid;gap:6px;background:#f3f3f5;border-radius:12px;padding:10px;font-weight:650}.tile img{width:19px;height:19px;filter:invert(1)}small{display:block;font-size:11px;color:#515155}.offer{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#242426;color:white;border-radius:12px;padding:12px}.offer small{color:#ddd;margin-top:4px}.offer a{background:white;color:#242426;padding:7px 9px;border-radius:20px;white-space:nowrap}.search{display:block;background:#f5f5f7;border:1px solid #dedee3;border-radius:12px;padding:10px}.search input{display:block;width:100%;margin-top:6px;padding:8px;border:1px solid #d2d2d7;border-radius:8px;font:inherit}.store{display:flex;justify-content:space-between;align-items:center;gap:8px;border-block:1px solid #e2e2e5;padding:10px 0}.store a{white-space:nowrap;text-decoration:underline;text-underline-offset:3px}.catalog{font-size:22px;margin:0 0 8px}.products{display:grid;grid-template-columns:1fr 1fr;gap:8px}.products span{background:#f5f5f7;border-radius:10px;overflow:hidden;padding-bottom:7px}.products img{display:block;width:100%;aspect-ratio:2/1;object-fit:cover;margin-bottom:5px}.products b{padding-inline:8px;font-weight:500}@media(prefers-reduced-motion:reduce){a{transition:none}a:active{transform:none}}
+.shortcuts .tile {
+  min-width: 0;
+  min-height: 44px;
+  grid-template-columns: minmax(0, 1fr) auto; align-items: center;
+  align-content: center;
+  gap: 7px;
+  padding: 4px 6px;
+  border: 1px solid #dedfe4;
+  border-radius: 13px;
+  background: linear-gradient(160deg, #fff, #eff0f3);
+  box-shadow: inset 0 1px 0 #fff, 0 2px 5px rgb(28 32 42 / 8%);
+  font-size: 12px;
+  text-align: left;
+  transition: transform 160ms cubic-bezier(.23, 1, .32, 1), background-color 160ms;
+}
+.shortcut-symbol {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 9px;
+  background: transparent;
+  color: #383b42;
+  font-size: 19px;
+  line-height: 1;
+}
+.shortcut-symbol img { width: 20px; height: 20px; filter: brightness(0) invert(.23); }
+.shortcuts .tile:active { transform: scale(.96); opacity: 1; background: #e3e5eb; }
+@media (prefers-reduced-motion: reduce) {
+  .shortcuts .tile { transition: none; }
+  .shortcuts .tile:active { transform: none; }
+}
+.shortcuts .tile { display: flex; justify-content: center; gap: 5px; }
+.shortcut-symbol { flex: none; }
+.shortcuts + .search { margin-top: 8px; }
+.search {
+  color: #242833;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+.search input {
+  color: inherit;
+  background: rgb(255 255 255 / 30%);
+  border-color: rgb(62 72 89 / 26%);
+}
+.search input::placeholder { color: #424956; opacity: 1; }
+
+.sample { min-width: 0; width: 100%; }
+.search-example { margin: 12px 0 16px; }
+.search-example label { display: block; margin-bottom: 6px; color: #353740; font-size: 13px; font-weight: 600; }
+.search-field { display: flex; align-items: center; gap: 9px; min-height: 44px; padding: 0 11px; border: 1px solid var(--edge, #d5d7dd); border-radius: var(--radius, 10px); background: var(--fill, #fff); box-shadow: var(--shadow, none); color: var(--ink, #25272c); }
+.search-field:focus-within { outline: 2px solid #5275a0; outline-offset: 2px; }
+.search-field input { min-width: 0; flex: 1; width: 100%; padding: 8px 0; border: 0; outline: 0; background: transparent; color: inherit; font: inherit; }
+.search-field input:focus-visible { outline: 0; }
+.search-field input::placeholder { color: var(--hint, #595e69); opacity: 1; }
+.lens { position: relative; display: inline-block; flex: none; width: 13px; height: 13px; margin-right: 3px; border: 1.5px solid currentColor; border-radius: 50%; }
+.lens::after { content: ""; position: absolute; width: 6px; height: 1.5px; top: 10px; left: 9px; background: currentColor; transform: rotate(45deg); transform-origin: left; }
+.pill { --radius: 999px; --fill: #f1f2f4; --edge: transparent; }
+.glass { --fill: #e9edf3; --edge: #cad3df; --shadow: 0 2px 6px #24242615; }
+.glass .lens { display: none; }
+.under .search-field { border-width: 0 0 1px; border-radius: 0; padding-inline: 0; }
+.graphite { --fill: #30333a; --edge: #30333a; --ink: #fff; --hint: #e2e4e9; }
+.recess { --fill: #eef0f2; --shadow: inset 0 2px 4px #24242618; }
+.blue { --fill: #edf4fb; --edge: #b9cde3; --ink: #263c54; }
+.outline { --edge: #666c76; --radius: 5px; }
+.soft { --fill: #f7f5f2; --edge: #ded7d0; --radius: 14px; }
+.trailing .lens { order: 1; }
+</style>
+<main><h1>Десять вариантов поиска</h1><div class="grid"></div></main>
+<script>
+const shortcuts = '<div class="shortcuts"><a class="tile" href="../#trade-in"><span class="shortcut-symbol" aria-hidden="true"><img src="trade-in-icon.png" alt=""></span>Trade-in</a><a class="tile" href="../#delivery"><span class="shortcut-symbol"><img src="../assets/menu-delivery.png" alt=""></span>Доставка</a><a class="tile" href="../#contacts"><span class="shortcut-symbol"><img src="../assets/menu-contacts.png" alt=""></span>Магазины</a></div>';
+const examples = [
+  ['classic', 'Тонкая рамка', 'Найти товар', 'Название модели'],
+  ['pill', 'Мягкая капсула', 'Что ищете?', 'Например, AirPods'],
+  ['glass', 'Серое стекло', 'Поиск по каталогу', 'Например, iPhone 17 Pro'],
+  ['under', 'Нижняя линия', 'Введите название модели', 'MacBook Air'],
+  ['graphite', 'Графитовое поле', 'Найдите свою модель', 'iPhone, iPad или MacBook'],
+  ['recess', 'Утопленное поле', 'Ищете конкретную модель?', 'Например, Apple Watch'],
+  ['blue', 'Голубой оттенок', 'Найти технику или аксессуар', 'Например, Apple Pencil'],
+  ['outline', 'Чёткий контур', 'Уже знаете модель?', 'Введите её название'],
+  ['soft', 'Тёплый серый', 'Поиск по названию', 'Например, Garmin'],
+  ['trailing', 'Лупа справа', 'Что хотите найти?', 'Например, iPad Air']
+];
+document.querySelector('.grid').innerHTML = examples.map(([style, title, label, hint], index) => `
+  <article class="sample">
+    <h2>${title}</h2>
+    <div class="hero"><strong>iPhone</strong><p>Поможем выбрать модель, цвет и объём памяти.</p><a href="../#catalog">Выбрать iPhone</a></div>
+    <div class="insert">
+      ${shortcuts}
+      <div class="search-example ${style}">
+        <label for="search-${index}">${label}</label>
+        <div class="search-field"><span class="lens" aria-hidden="true"></span><input id="search-${index}" type="search" placeholder="${hint}"></div>
+      </div>
+      <h3 class="catalog">Каталог</h3>
+      <div class="products"><span><img src="../assets/iphone-category.png" alt=""><b>iPhone</b></span><span><img src="../assets/macbook.jpg" alt=""><b>MacBook</b></span></div>
+    </div>
+  </article>`).join('');
+</script>
+</html>

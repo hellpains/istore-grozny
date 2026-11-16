@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iStoreGrozny — предпросмотр iPhone 17</title>
+<style>
+body { --screen-width: 402px; --screen-height: 874px; margin: 0; padding: 12px 0; background: #202023; color: #f5f5f7; font: 14px system-ui, sans-serif; }
+.stage { margin: auto; }
+iframe { display: block; width: var(--screen-width); height: var(--screen-height); border: 0; background: white; transform-origin: top left; }
+html { scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+.device { position: relative; box-sizing: content-box; width: var(--screen-width); height: var(--screen-height); padding: 8px; border: 2px solid #646469; border-radius: 52px; background: #111; box-shadow: 0 10px 28px #0007; transform-origin: top left; }
+.device-screen { width: var(--screen-width); height: var(--screen-height); overflow: hidden; clip-path: inset(0 round 42px); background: #111; }
+.device iframe { background: #111; }
+.device::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  z-index: 1;
+  border: 3px solid #111;
+  border-radius: 44px;
+  pointer-events: none;
+}
+header button { font: inherit; color: inherit; background: #303034; border: 1px solid #646469; border-radius: 8px; padding: 7px 10px; cursor: pointer; transition: transform 160ms ease-out; }
+header button[aria-pressed="true"] { background: #f5f5f7; color: #202023; }
+header button:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) { header button { transition: none; } header button:active { transform: none; } }
+header { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin: 0 12px 10px; }
+@media (min-width: 1040px) {
+  header { position: absolute; top: 12px; left: 12px; margin: 0; }
+}
+.device-screen { position: relative; --island-area: 48px; background: #242426; }
+.device-screen iframe { position: absolute; top: var(--island-area); left: 0; height: calc(var(--screen-height) - var(--island-area)); }
+.device-island { position: absolute; z-index: 1; top: 10px; left: 50%; transform: translateX(-50%); width: 120px; height: 29px; border-radius: 999px; background: #050505; pointer-events: none; }
+.device-status { position: absolute; inset: 0 0 auto; height: 48px; display: grid; grid-template-columns: 1fr 120px 1fr; place-items: center; color: #fff; font: 600 15px system-ui, sans-serif; pointer-events: none; }
+.device-status-icons { grid-column: 3; display: flex; align-items: center; gap: 5px; }
+.device-status svg { fill: currentColor; }
+</style>
+</head>
+<body>
+<header><button type="button" data-model="17" aria-pressed="true">iPhone 17</button><button type="button" data-model="17-max" aria-pressed="false">iPhone 17 Pro Max</button></header>
+<div class="stage"><div class="device"><div class="device-screen"><div class="device-status" aria-hidden="true">
+  <span>9:41</span>
+  <span class="device-status-icons">
+    <svg width="18" height="13" viewBox="0 0 18 13"><rect x="0" y="9" width="3" height="4" rx="1"/><rect x="5" y="6" width="3" height="7" rx="1"/><rect x="10" y="3" width="3" height="10" rx="1"/><rect x="15" width="3" height="13" rx="1"/></svg>
+    <svg width="16" height="13" viewBox="0 0 16 13"><path d="M1 3.5a11 11 0 0 1 14 0M3.5 6.3a7 7 0 0 1 9 0M6 9a3 3 0 0 1 4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="8" cy="11.6" r="1"/></svg>
+    <svg width="24" height="13" viewBox="0 0 24 13"><rect x=".5" y="1" width="20" height="11" rx="3" fill="none" stroke="currentColor" opacity=".55"/><rect x="2.5" y="3" width="16" height="7" rx="1.5"/><path d="M22 4.5a2 2 0 0 1 0 4Z" opacity=".55"/></svg>
+  </span>
+</div><span class="device-island" aria-hidden="true"></span><iframe src="../index.html?v=macbook-category" title="Мобильная версия iStoreGrozny"></iframe></div></div></div>
+<script>
+const frame = document.querySelector('iframe');
+const stage = document.querySelector('.stage');
+const device = document.querySelector('.device');
+frame.addEventListener('load', () => {
+  const page = frame.contentDocument;
+  if (!page) return;
+  const style = page.createElement('style');
+  style.textContent = 'html { scrollbar-width: none; } html::-webkit-scrollbar { display: none; }';
+  style.textContent += 'html { user-select: none; }';
+  page.head.append(style);
+  enableMouseGestures(page);
+});
+function enableMouseGestures(page) {
+  const view = page.defaultView;
+  let gesture;
+  let suppressClick = false;
+
+  page.addEventListener('dragstart', event => event.preventDefault());
+  page.addEventListener('pointerdown', event => {
+    if (event.pointerType !== 'mouse' || event.button !== 0) return;
+    suppressClick = false;
+    gesture = {
+      x: event.clientX, y: event.clientY, lastY: event.clientY,
+      carousel: event.target.closest('.hero-slides'),
+      scrollArea: event.target.closest('#site-navigation') || page.scrollingElement,
+    };
+  });
+
+  page.addEventListener('pointermove', event => {
+    if (!gesture || !(event.buttons & 1)) return;
+    const dx = event.clientX - gesture.x;
+    const dy = event.clientY - gesture.y;
+    if (!gesture.axis && Math.hypot(dx, dy) >= 8) {
+      gesture.axis = gesture.carousel && Math.abs(dx) > Math.abs(dy) * 1.25 ? 'x' : 'y';
+    }
+    if (gesture.axis === 'y') {
+      gesture.scrollArea.scrollTop += gesture.lastY - event.clientY;
+      gesture.lastY = event.clientY;
+    }
+  });
+
+  page.addEventListener('pointerup', event => {
+    if (!gesture) return;
+    const start = gesture;
+    gesture = undefined;
+    suppressClick = Boolean(start.axis);
+    if (start.axis !== 'x') return;
+
+    const touchAt = (clientX, clientY) => new view.Touch({
+      identifier: 1, target: start.carousel, clientX, clientY,
+    });
+    start.carousel.dispatchEvent(new view.TouchEvent('touchstart', {
+      bubbles: true, touches: [touchAt(start.x, start.y)],
+    }));
+    start.carousel.dispatchEvent(new view.TouchEvent('touchend', {
+      bubbles: true, cancelable: true, changedTouches: [touchAt(event.clientX, event.clientY)],
+    }));
+  });
+
+  page.addEventListener('pointercancel', () => { gesture = undefined; });
+  page.addEventListener('click', event => {
+    if (!suppressClick) return;
+    suppressClick = false;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  }, true);
+}
+
+function fitPreview() {
+  const scale = Math.min(1, (document.documentElement.clientWidth - 16) / device.offsetWidth);
+  stage.style.width = device.offsetWidth * scale + 'px';
+  stage.style.height = device.offsetHeight * scale + 'px';
+  device.style.transform = 'scale(' + scale + ')';
+}
+const modelButtons = document.querySelectorAll('[data-model]');
+const models = { '17': [402, 874], '17-max': [440, 956] };
+function setModel(model) {
+  const [width, height] = models[model];
+  document.body.style.setProperty('--screen-width', width + 'px');
+  document.body.style.setProperty('--screen-height', height + 'px');
+  fitPreview();
+}
+for (const button of modelButtons) {
+  button.addEventListener('click', () => {
+    for (const item of modelButtons) item.setAttribute('aria-pressed', String(item === button));
+    setModel(button.dataset.model);
+  });
+}
+window.addEventListener('resize', fitPreview);
+setModel('17');
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>iStoreGrozny — макеты A</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#eef2f7;color:#111722;font:16px Arial,sans-serif}h1,h2,h3{font-family:Georgia,serif;font-weight:400}h1{font-size:clamp(38px,7vw,76px);margin:.25em 0}h2{font-size:36px}h3{font-size:25px;margin:0 0 12px}main{max-width:1200px;margin:auto;padding:30px 20px 70px}nav{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}nav a,.pill{background:#0955ff;color:white;padding:12px 18px;border-radius:40px;text-decoration:none;display:inline-block}nav a{background:white;color:#144bd0}section{margin:40px 0}.pair{display:grid;grid-template-columns:2fr 1fr;align-items:start;gap:20px}.screen{background:white;border-radius:16px;overflow:hidden;margin:0 0 16px;box-shadow:0 8px 24px #19345d10}.screen img{display:block;width:100%}.shophead{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 5%;border-bottom:1px solid #e8eef8}.shophead strong{font-size:20px;letter-spacing:-.05em}.shophead small{color:#4d5767}.content{padding:28px 5% 38px;background:linear-gradient(145deg,#fff 40%,#e8f0fb)}.content h2{margin:0 0 18px}.content p{line-height:1.5}.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tile,.form{background:white;padding:18px;border-radius:14px;border:1px solid #e2e9f3}.tile p{margin:6px 0 14px}.tile img{width:100%;height:auto;border-radius:9px}.foot{padding:16px 5%;color:#535e70;font-size:13px}.phone .tiles{grid-template-columns:1fr}.phone .categories{grid-template-columns:repeat(2,minmax(0,1fr))}.phone .content h2{font-size:30px}.phone .tile{padding:12px}.field{border:1px solid #ccd6e4;background:#fff;border-radius:8px;padding:12px;margin:6px 0 14px;color:#536076}.muted{color:#536076}.notice{border-radius:10px;background:#e9f2ff;padding:15px;margin:12px 0}.map{width:100%;height:130px;background:repeating-linear-gradient(24deg,transparent 0 25px,#fff 26px 33px),repeating-linear-gradient(105deg,#dce7e2 0 40px,#f5f8f5 41px 49px);display:grid;place-items:center;border-radius:12px;color:#124dee;margin-top:14px}label{font-size:14px}.photo{height:160px;background:url('A.png') 76% 17%/205% auto;border-radius:12px}.phone .photo{height:120px}.error{color:#a32330;background:#fff0f1}.chip{display:inline-block;background:#edf3ff;border-radius:20px;padding:7px 12px;margin:3px}@media(max-width:690px){.pair{grid-template-columns:1fr}.phone{max-width:420px}}
+
+body{background:#ececee;color:#1d1d1f;font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+h1,h2,h3{font-family:inherit;font-weight:650;letter-spacing:-.045em}
+nav a,.pill{background:#242426;color:#fff}nav a{background:#fff;color:#242426}
+.content{background:#f5f5f7}.tile,.form,.shophead{border-color:#e3e3e7}
+.muted,.foot,.shophead small,.field{color:#515155}.field{border-color:#d2d2d7}
+.notice,.chip{background:#e7e7eb}.map{background:#e0e0e4;color:#333}
+.photo{background-size:155% auto}
+.hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:20px;margin-bottom:24px}.hero .photo{height:255px}.phone .hero{grid-template-columns:1fr}.phone .hero .photo{height:215px}
+.phone .shophead small{font-size:11px}.error{background:#ececee;color:#292929;border:1px solid #888}
+.content>h2:empty{display:none}
+.home-hero{display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden;border-radius:16px;background:#fff;margin-bottom:26px}
+.home-copy{padding:clamp(16px,3vw,44px)}
+.home-copy h2{font-size:clamp(29px,4vw,56px);line-height:1.04;margin:0}
+.home-copy p{color:#515155;margin:12px 0 20px}
+.home-image{position:relative;overflow:hidden;aspect-ratio:686/529}
+.home-image img{display:block;position:absolute;width:223.91%;max-width:none;left:-123.91%;top:-19.85%}
+.home-catalog{margin-bottom:14px}
+.phone .home-hero{grid-template-columns:1fr}
+.phone .home-copy{padding:22px 16px}
+.phone .home-copy h2{font-size:clamp(25px,5vw,34px)}
+@media(max-width:480px){.home-hero{grid-template-columns:1fr}}
+</style>
+<main><h1>iStoreGrozny</h1><p class="muted">Вариант A · белый, графит и серебристый · статичные макеты для компьютера и телефона</p><nav></nav><div id="pages"></div></main>
+<script>
+const button=t=>'<span class="pill">'+t+'</span>';
+const tile=(h,t)=>'<div class="tile"><h3>'+h+'</h3>'+t+'</div>';
+const tiles=(...t)=>'<div class="tiles">'+t.join('')+'</div>';
+const field=(l,t)=>'<label>'+l+'</label><div class="field">'+t+'</div>';
+const note=t=>'<div class="notice">'+t+'</div>';
+const header='<div class="shophead"><strong>iStoreGrozny</strong><small>+7 (928) 000-03-91　☰</small></div>';
+const mock=(title,html)=>'<div class="screen">'+header+'<div class="content"><h2>'+title+'</h2>'+html+'</div><div class="foot">iStoreGrozny · Грозный</div></div>';
+const img=(name)=>'<figure class="screen"><a href="'+name+'"><img loading="lazy" src="'+name+'" alt="Макет страницы"></a></figure>';
+const run=(mode,...slots)=>slots.map(s=>img(mode+'/branch/screens/'+s+'.png')).join('');
+const categories='<div class="tiles categories">'+['iPhone','MacBook','iPad','AirPods','Apple Watch','Dyson'].map((n,i)=>tile(n,'<div class="product-image" style="aspect-ratio:1.3;background:url(A.png) '+[4.7,22.7,40.8,59,77,95][i]+'% 81% / 715% auto;border-radius:8px"></div>')).join('')+'</div>';
+const trade=note('Оценим ваше устройство и зачтём его стоимость при покупке нового.')+'<div class="form">'+field('Модель','Например, iPhone 15')+field('Память','Выберите объём')+field('Состояние','Выберите состояние')+field('Телефон','+7 (___) ___-__-__')+button('Отправить на оценку')+'</div>';
+const delivery=tiles(tile('Доставка','<p>Уточните стоимость и срок доставки по вашему адресу.</p>'+button('Связаться с магазином')),tile('Самовывоз','<p>Выберите удобный магазин в Грозном и уточните наличие товара.</p>'+button('Адреса магазинов')),tile('Оплата','<p>Доступные способы оплаты уточнит менеджер при подтверждении заявки.</p>'));
+const contacts=tiles(...['Германа Угрюмова, 80','Назарбаева, 100'].map(a=>tile('ул. '+a,'<p>Грозный · ежедневно, 09:00–21:00</p><p>+7 (928) 000-03-91</p>'+button('Построить маршрут'))))+'<div class="map">● Грозный　 ●</div>';
+const about='<div class="photo"></div><p>iStoreGrozny — магазин техники Apple и аксессуаров в Грозном.</p>'+tiles(tile('Поможем выбрать','<p>Подберём устройство и комплектацию под ваши задачи.</p>'),tile('Поможем настроить','<p>Подскажем, как начать работу с новым устройством.</p>'))+'<p>'+button('Наши магазины')+'</p>';
+const article='Как выбрать iPhone';
+const news=tiles(...[article,'Как подготовить iPhone к Trade-in','Как выбрать объём памяти'].map(t=>tile(t,'<div class="photo"></div><p>Советы по выбору и покупке техники</p>'+button('Читать'))));
+const detail='<div class="photo"></div><p>При выборе iPhone сравните размер экрана, возможности камеры и доступный объём памяти.</p><h3>Память и SIM</h3><p>Если снимаете много видео, сравните варианты с большим объёмом памяти. Перед покупкой проверьте, подходит ли вам версия с eSIM.</p>'+button('Смотреть iPhone');
+const form='<div class="form"><p>iPhone 17 Pro · 256 ГБ · eSIM</p><strong>98 000 ₽</strong><p></p>'+field('Имя','Как к вам обращаться')+field('Телефон *','+7 (___) ___-__-__')+'<p><small>□ Согласие на обработку персональных данных</small></p>'+button('Отправить заявку')+'</div>';
+const product=note('iPhone 17 Pro · 256 ГБ · eSIM')+'<div class="photo"></div><p>Память　<span class="chip">256 ГБ</span><span class="chip">512 ГБ</span></p><p>SIM　<span class="chip">eSIM</span><span class="chip">nano-SIM</span></p><h3>98 000 ₽</h3><p>Нет в наличии</p>'+button('Уточнить поставку');
+const filters='<div class="form">'+field('Цена','От ______ до ______')+field('Память','256 ГБ · 512 ГБ · 1 ТБ')+field('Цвет','Все цвета')+field('Тип SIM','eSIM · nano-SIM')+'<p>□ Только в наличии</p>'+button('Показать товары')+'　Сбросить</div>';
+const both=(t,c)=>[mock(t,c),mock(t,c)];
+const results=tiles(...['iPhone 17 Pro','iPhone 17','iPhone 16','iPhone 15'].map((t,i)=>tile(t,'<div class="photo"></div><p>от '+['98 000','62 500','55 500','47 500'][i]+' ₽ · В наличии</p>'+button('Выбрать'))));
+const home='<div class="home-hero"><div class="home-copy"><h2>Техника Apple<br>в Грозном</h2><p>Смартфоны, ноутбуки и аксессуары</p>'+button('Смотреть каталог')+'</div><div class="home-image" role="img" aria-label="Два iPhone на светло-голубом фоне"><img src="A.png" alt=""></div></div><h3 class="home-catalog">Каталог</h3>'+categories+'<h2>Популярные товары</h2>'+results+'<h2>Покупка и Trade-in</h2>'+delivery+'<h2>Наши магазины</h2>'+contacts;
+const listing='<div class="field">Поиск по модели</div><p><span class="chip">Фильтры</span><span class="chip">По цене</span></p>'+results;
+const available='<div class="hero"><div class="photo"></div><div><p>Цвет　<span class="chip">Серебристый</span></p><p>Память　<span class="chip">256 ГБ</span><span class="chip">512 ГБ</span></p><p>SIM　<span class="chip">eSIM</span><span class="chip">nano-SIM</span></p><h3>98 000 ₽</h3><p>В наличии</p>'+button('Оставить заявку')+'</div></div>'+note('Условия доставки и гарантии уточнит менеджер.');
+const pages=[
+ ['Главная',...both('',home)],
+ ['Каталог',...both('Каталог',categories)],
+ ['Категория iPhone',...both('iPhone',listing)],
+ ['Карточка iPhone',...both('iPhone 17 Pro',available)],
+ ['Trade-in',...both('Trade-in',trade)],
+ ['Доставка и оплата',...both('Доставка и оплата',delivery)],
+ ['Контакты',...both('Контакты',contacts)],
+ ['О компании',...both('О компании',about)],
+ ['Новости и статьи',...both('Новости и статьи',news)],
+ ['Статья',...both(article,detail)],
+ ['Страница 404',...both('Страница не найдена','<p>Проверьте адрес или вернитесь на главную.</p>'+button('На главную'))],
+ ['Заявка',...both('Оставить заявку',form)],
+ ['Заявка отправлена',...both('Заявка отправлена',note('Менеджер свяжется с вами по указанному номеру.')+button('Вернуться в каталог'))],
+ ['Ошибка отправки',...both('Оставить заявку','<div class="notice error">Не удалось отправить заявку. Попробуйте ещё раз.</div>'+form)],
+ ['Товар отсутствует',...both('iPhone 17 Pro',product)],
+ ['Пустая выдача',...both('iPhone','<div class="field">Поиск по модели</div>'+note('По выбранным фильтрам ничего не найдено.')+button('Сбросить фильтры'))],
+ ['Панель фильтров',mock('Фильтры',filters),mock('Фильтры',filters)]
+];
+document.querySelector('nav').innerHTML=pages.map(([t],i)=>'<a href="#p'+i+'">'+t+'</a>').join('');
+document.querySelector('#pages').innerHTML=pages.map(([t,d,m],i)=>'<section id="p'+i+'"><h2>'+t+'</h2><div class="pair"><div><p class="muted">Компьютер</p>'+d+'</div><div class="phone"><p class="muted">Телефон</p>'+m+'</div></div></section>').join('');
+</script>
+</html>
+

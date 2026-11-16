@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Каталог техники Apple и Dyson. Магазины iStoreGrozny в Грозном.">
+  <title>iStoreGrozny — техника Apple в Грозном</title>
+  <link rel="stylesheet" href="styles.css?v=desktop-hero-width">
+  <script src="catalog-data.js" defer></script>
+  <script src="catalog.js?v=ipad-category" defer></script>
+  <script src="hero.js?v=autoplay-20s" defer></script>
+  <script src="header.js" defer></script>
+  <script src="service-dialogs.js?v=delivery-actions" defer></script>
+</head>
+<body>
+  <header class="site-header" id="home">
+    <div class="shell header-row">
+      <a class="brand" href="./"><img src="assets/logo-white.png" alt="iStoreGrozny — главная" width="174" height="60"></a>
+      <nav id="site-navigation" aria-label="Основное меню"><a href="#home"><img class="mobile-menu-icon" src="assets/menu-home.png" alt="" width="20" height="20">Главная</a><a href="#catalog"><img class="mobile-menu-icon" src="assets/menu-catalog.png" alt="" width="20" height="20">Каталог</a><a href="#delivery" aria-haspopup="dialog"><img class="mobile-menu-icon" src="assets/menu-delivery.png" alt="" width="20" height="20">Доставка</a><a href="address/"><img class="mobile-menu-icon" src="assets/menu-contacts.png" alt="" width="20" height="20">Адрес</a>
+        <a class="mobile-menu-about" href="about/"><img class="mobile-menu-icon" src="assets/menu-about.png" alt="" width="20" height="20">О магазине</a>
+        <div class="mobile-menu-footer">
+          <a class="mobile-menu-contact" href="tel:+79380000391"><span class="call-icon"><img src="assets/phone.png" alt="" width="15" height="15"></span><span>+7 (938) 000-03-91<small>Ежедневно, 09:00–21:00</small></span></a>
+          <div class="mobile-socials" aria-label="Социальные сети">
+            <a href="https://wa.me/79380000391" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.7 7.4L4 20l.9-3.8a8.5 8.5 0 1 1 15.6-4.5Z"/><path d="M9 8.3c-.5-.3-1.1.2-1.1 1 0 2.5 3.7 6.1 6.2 6.1.8 0 1.4-.6 1.1-1.1l-1.6-1-1 .8a7.3 7.3 0 0 1-2.9-2.9l.7-.9Z"/></svg>
+            </a>
+            <span aria-label="Instagram" role="img">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.7" cy="7.4" r=".8" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span aria-label="Telegram" role="img">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 10.8 16-6-3.1 14.4-5-3.9-2.8 2.5.5-5.1 7-5.1-8.9 4.8Z"/></svg>
+            </span>
+          </div>
+        </div>
+      </nav>
+      <div class="header-contacts"><a class="contact-item" href="tel:+79380000391"><img src="assets/phone.png" alt="" width="20" height="20">+7 (938) 000-03-91</a><span class="contact-item" aria-label="Часы работы: с 09:00 до 21:00"><img src="assets/clock.png" alt="" width="20" height="20">09:00–21:00</span></div>
+      <div class="mobile-header-actions">
+        <a class="mobile-call" href="tel:+79380000391" aria-label="Позвонить в iStoreGrozny"><img src="assets/phone.png" alt="" width="20" height="20"></a>
+        <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-controls="site-navigation" aria-expanded="false" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path class="burger-top" d="M2 10h16"/><path class="burger-middle" d="M2 10h16"/><path class="burger-bottom" d="M2 10h16"/></svg></button>
+      </div>
+      <div class="menu-shade" aria-hidden="true"></div>
+    </div>
+  </header>
+  <main>
+    <section class="hero" aria-label="Предложения iStoreGrozny">
+      <div class="hero-slides">
+        <div class="hero-slide hero-slide--iphone">
+          <div class="hero-copy">
+            <h1>iPhone</h1>
+            <p>Поможем выбрать модель, цвет и объём памяти.</p>
+            <a class="button" href="iphone/">Выбрать iPhone</a>
+          </div>
+          <img src="assets/carousel-iphone.jpg" alt="Два iPhone в бордовом цвете" width="1536" height="1024">
+        </div>
+        <div class="hero-slide" hidden inert>
+          <div class="hero-copy">
+            <h2>MacBook Air<br>и MacBook Pro</h2>
+            <p>Подберите ноутбук для учёбы, работы или творчества.</p>
+            <a class="button" href="macbook/">Смотреть MacBook <span aria-hidden="true">→</span></a>
+          </div>
+          <img src="assets/carousel-macbook.jpg" alt="Серебристый MacBook" width="1536" height="1024">
+        </div>
+        <div class="hero-slide" hidden inert>
+          <div class="hero-copy">
+            <h2>iPad Air<br>и iPad mini</h2>
+            <p>Выберите планшет для заметок, рисования и повседневных задач.</p>
+            <a class="button" href="ipad/">Смотреть iPad <span aria-hidden="true">→</span></a>
+          </div>
+          <img src="assets/carousel-ipad.jpg" alt="Голубой iPad" width="1536" height="1024">
+        </div>
+      </div>
+      <div class="hero-pagination" role="group" aria-label="Выбор баннера" hidden>
+        <button type="button" aria-label="iPhone" aria-pressed="true"></button>
+        <button type="button" aria-label="MacBook" aria-pressed="false"></button>
+        <button type="button" aria-label="iPad" aria-pressed="false"></button>
+      </div>
+    </section>
+    <div class="shell">
+    <div class="catalog-intro">
+      <nav class="catalog-shortcuts" aria-label="Быстрые ссылки">
+        <a href="#trade-in" aria-haspopup="dialog"><img src="assets/trade-in-icon.png" alt="" width="20" height="20">Trade-in</a>
+        <a href="#delivery" aria-haspopup="dialog"><img src="assets/menu-delivery.png" alt="" width="20" height="20">Доставка</a>
+        <a href="address/"><img src="assets/menu-contacts.png" alt="" width="20" height="20">Магазины</a>
+      </nav>
+      <label for="catalog-search">Поиск по каталогу</label>
+      <input id="catalog-search" type="search" placeholder="Например, iPhone 17 Pro" aria-controls="catalog-search-results">
+      <div id="catalog-search-results" class="results" aria-live="polite"></div>
+    </div>
+    <section id="catalog" aria-labelledby="catalog-title">
+      <h2 id="catalog-title">Каталог</h2>
+      <div id="categories" class="categories"></div>
+      <div id="products" class="products" hidden>
+        <label for="search">Поиск по модели</label>
+        <input id="search" type="search" placeholder="Например, iPhone 17">
+        <p class="muted">Демонстрационный ассортимент. Цены и наличие уточняйте в магазине.</p>
+        <div id="results" class="results" aria-live="polite"></div>
+      </div>
+    </section>
+    <dialog id="trade-in" class="service-dialog" aria-labelledby="trade-in-title">
+      <div class="service-dialog-heading">
+        <h2 id="trade-in-title">Trade-in</h2>
+        <form method="dialog"><button aria-label="Закрыть">×</button></form>
+      </div>
+      <ol class="trade-in-steps">
+        <li><h3>Оставьте заявку</h3><p>Позвоните по номеру <a href="tel:+79280000391">+7 (928) 000-03-91</a> или <a href="https://wa.me/79380000391">напишите в WhatsApp</a>.</p></li>
+        <li><h3>Оценим устройство</h3><p>Сотрудник проверит устройство и предварительно оценит его стоимость.</p></li>
+        <li><h3>Выберите новый телефон</h3><p>Вычтем итоговую стоимость старого телефона из цены нового.</p></li>
+      </ol>
+    </dialog>
+    <dialog id="delivery" class="service-dialog" aria-labelledby="delivery-title">
+      <div class="service-dialog-heading">
+        <h2 id="delivery-title">Доставка</h2>
+        <form method="dialog"><button aria-label="Закрыть">×</button></form>
+      </div>
+      <p>Доставка по всей России через транспортные компании CDEK и Почта.</p>
+      <p>Доставка по г. Грозный бесплатно!</p>
+      <div class="delivery-actions">
+        <form method="dialog"><button class="button" value="catalog">Каталог</button></form>
+        <a class="button" href="https://wa.me/79380000391">Написать в WhatsApp</a>
+      </div>
+    </dialog>
+    
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="shell footer">
+      <a class="brand" href="./"><img src="assets/logo-white.png" alt="iStoreGrozny — главная" width="194" height="80"></a>
+      <div class="footer-columns">
+        <nav aria-label="Навигация в подвале">
+          <h2>Навигация</h2>
+          <a href="./">Главная</a>
+          <a href="./#catalog">Каталог</a>
+          <a href="./#delivery">Доставка</a>
+          <a href="address/">Магазины</a>
+          <a href="about/">О магазине</a>
+        </nav>
+        <div class="footer-documents">
+          <h2>Документы</h2>
+          <span>Cookies</span>
+          <span>Пользовательские соглашения</span>
+          <span>Политика конфиденциальности</span>
+        </div>
+      </div>
+      <div class="footer-contacts">
+        <h2>Контакты</h2>
+        <a href="mailto:info@istoregrozny.ru"><span class="footer-contact-icon" aria-hidden="true">✉</span>info@istoregrozny.ru</a>
+        <a href="tel:+79280000391"><img src="assets/phone.png" alt="" width="16" height="16">+7 (928) 000-03-91</a>
+      <p><img src="assets/clock.png" alt="" width="16" height="16">Ежедневно, с 09:00 до 21:00</p>
+      </div>
+      <div class="footer-socials" role="group" aria-label="Социальные сети">
+            <a href="https://wa.me/79380000391" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.7 7.4L4 20l.9-3.8a8.5 8.5 0 1 1 15.6-4.5Z"/><path d="M9 8.3c-.5-.3-1.1.2-1.1 1 0 2.5 3.7 6.1 6.2 6.1.8 0 1.4-.6 1.1-1.1l-1.6-1-1 .8a7.3 7.3 0 0 1-2.9-2.9l.7-.9Z"/></svg>
+            </a>
+            <span aria-label="Instagram" role="img">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.7" cy="7.4" r=".8" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <span aria-label="Telegram" role="img">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 10.8 16-6-3.1 14.4-5-3.9-2.8 2.5.5-5.1 7-5.1-8.9 4.8Z"/></svg>
+            </span>
+          </div>
+      <p class="footer-copyright">© 2026 <strong>·</strong> iStoreGrozny — Твой лучший магазин Apple в Грозном</p>
+    </div>
+  </footer>
+</body>
+</html>
+
+

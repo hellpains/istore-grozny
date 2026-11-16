@@ -1,0 +1,20 @@
+header { background: #242426; padding: 14px 16px; }
+header img { display: block; }
+main { padding: 14px; }
+nav { display: flex; align-items: center; gap: 4px; margin-bottom: 8px; color: #626269; font-size: 13px; }
+.iphone-models { margin-top: 12px; }
+[data-view=list] .iphone-models > li { padding-inline: 2px; background: white; border: 0; }
+[data-view=cards] .iphone-models > li { background: #edf1f7; }
+[data-view=cards] .iphone-models ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+[data-view=cards] .iphone-models ul li { display: grid; align-content: space-between; padding: 9px; border: 0; border-radius: 8px; background: white; }
+summary { cursor: pointer; font-weight: 650; }
+summary:active { opacity: .65; }
+details[open] summary { margin-bottom: 10px; }
+#model-picker { margin-top: 12px; }
+select { font: inherit; padding: 7px; border: 1px solid #ccd3df; border-radius: 8px; background: #edf1f7; }
+[data-view=dark] { background: #171719; color: #fafafa; }
+[data-view=dark] .iphone-models > li { background: #28282d; border-color: #414148; }
+[data-view=dark] nav, [data-view=dark] .iphone-price-date, [data-view=dark] .iphone-stock-sim { color: #c5c5cd; }
+[data-view=dark] .iphone-models ul li { border-color: #414148; }
+[data-view=dark] strong { color: #d3ddf3; }
+

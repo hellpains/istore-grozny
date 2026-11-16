@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>iStoreGrozny — мобильная шапка</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f3f5;color:#242426;font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{width:min(1160px,calc(100% - 28px));margin:36px auto}h1{font-size:clamp(28px,5vw,48px);letter-spacing:-.045em;margin:0 0 24px}h2{font-size:17px;margin:0 0 10px}.samples{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:24px}.sample{border:1px solid #ddd;border-radius:16px;overflow:hidden;background:white}.header{background:#242426;color:white;padding:12px}.row,.actions{display:flex;align-items:center;gap:8px}.actions{margin-left:auto}.logo{width:110px;border:1px solid white;border-radius:8px;padding:3px;display:block}.header a,.toggle{color:inherit;text-decoration:none;transition:background .16s,transform .16s}.header a:active,.toggle:active{transform:scale(.95);background:#ffffff25}.icon,.toggle{display:grid;place-items:center;width:40px;height:40px;border:1px solid #ffffff55;border-radius:10px;background:transparent;cursor:pointer}.icon img{width:17px;height:17px}.toggle svg{width:20px;height:20px}.toggle path{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;vector-effect:non-scaling-stroke;transform-origin:10px 10px;transition:transform .24s,opacity .18s}.top{transform:translateY(-5px)}.bottom{transform:translate(3px,5px) scaleX(.625)}.toggle[aria-expanded=true] .top{transform:rotate(45deg)}.toggle[aria-expanded=true] .middle{opacity:0;transform:scaleX(.35)}.toggle[aria-expanded=true] .bottom{transform:rotate(-45deg)}.pill,.search{display:flex;align-items:center;gap:7px;background:#ffffff12;border:1px solid #ffffff38;border-radius:9px;padding:8px;font-size:12px;white-space:nowrap}.pill img,.search img{width:15px;height:15px}.search{margin-top:10px;color:#ddd}.status{font-size:12px;color:#e2e2e5;white-space:nowrap}.status small{display:block;color:#bfc0c4;font-size:11px}.status strong{font-weight:600}.preview{padding:12px}.preview img{display:block;width:100%;height:115px;object-fit:cover;object-position:center 35%;border-radius:10px}.nav{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}.header:has(.toggle[aria-expanded=true]) .nav{grid-template-rows:1fr}.nav>div{overflow:hidden}.nav a{display:block;padding:8px 4px;border-radius:6px}.nav a:first-child{margin-top:8px}.nav a:last-child{color:#d6d6d9}a:focus-visible,button:focus-visible{outline:2px solid #9dbfff;outline-offset:2px}@media(max-width:365px){.logo{width:90px}.row,.actions{gap:5px}.icon,.toggle{width:36px;height:36px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+</style>
+<body><main><h1>Мобильная шапка</h1><div class="samples"></div></main>
+<script>
+const phone='tel:+79380000391';
+const icon=(name)=>'<img src="../assets/'+name+'.png" alt="">';
+const call='<a class="icon" href="'+phone+'" aria-label="Позвонить">'+icon('phone')+'</a>';
+const variants=[
+ ['Звонок рядом с бургером',call,''],
+ ['Кнопка «Позвонить»','<a class="pill" href="'+phone+'">'+icon('phone')+'Позвонить</a>',''],
+ ['Быстрый переход в каталог','<a class="icon" href="../#catalog" aria-label="Каталог">'+icon('menu-catalog')+'</a>'+call,''],
+ ['Каталог второй строкой',call,'<a class="search" href="../#catalog">'+icon('menu-catalog')+'Перейти в каталог</a>'],
+ ['Город и часы работы','<a class="status" href="../#contacts"><strong>Грозный</strong><small>09:00–21:00</small></a>',''],
+];
+document.querySelector('.samples').innerHTML=variants.map(([title,actions,extra],index)=>`<section><h2>${index+1}. ${title}</h2><div class="sample"><header class="header"><div class="row"><img class="logo" src="../assets/logo-white.png" alt="iStoreGrozny"><div class="actions">${actions}<button class="toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-${index}"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="top" d="M2 10h16"/><path class="middle" d="M2 10h16"/><path class="bottom" d="M2 10h16"/></svg></button></div></div>${extra}<nav class="nav" id="nav-${index}" inert><div><a href="../#home">Главная</a><a href="../#catalog">Каталог</a><a href="../#delivery">Доставка</a><a href="../#contacts">Адрес</a><a href="${phone}">+7 (938) 000-03-91 · 09:00–21:00</a></div></nav></header><div class="preview"><img src="../assets/hero.jpg" alt="Два iPhone"></div></div></section>`).join('');
+for(const button of document.querySelectorAll('.toggle')){
+ const nav=document.getElementById(button.getAttribute('aria-controls'));
+ button.addEventListener('click',()=>{
+  const open=nav.inert;
+  nav.inert=!open;
+  button.setAttribute('aria-expanded',String(open));
+  button.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню');
+ });
+}
+</script></body></html>
