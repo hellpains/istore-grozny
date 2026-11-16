@@ -4,6 +4,7 @@ if (document.body.dataset.view === 'series') {
   tradeInDialog.setAttribute('aria-labelledby', 'trade-in-title');
   tradeInDialog.innerHTML = '<div class="series-dialog-heading"><h2 id="trade-in-title">Trade-in</h2><form method="dialog"><button aria-label="Закрыть">×</button></form></div><div class="series-trade-in-content"><ol class="trade-in-steps">         <li><h3>Оставьте заявку</h3><p>Позвоните по номеру <a href="tel:+79280000391">+7 (928) 000-03-91</a> или <a href="https://wa.me/79380000391">напишите в WhatsApp</a>.</p></li>         <li><h3>Оценим устройство</h3><p>Сотрудник проверит устройство и предварительно оценит его стоимость.</p></li>         <li><h3>Выберите новое устройство</h3><p>Вычтем итоговую стоимость старого устройства из цены нового.</p></li>       </ol></div>';
 
+  const assetsUrl = new URL('../assets/', document.currentScript.src);
   const family = document.body.dataset.family || 'iPhone';
   const seriesStock = family === 'iPad' ? ipadStock : iphoneStock;
   const priceGroups = [...iphoneModels.children];
@@ -114,7 +115,7 @@ if (document.body.dataset.view === 'series') {
       const finish = name.startsWith('iPhone 18 Pro') && color === 'Blue'
         ? 'glacier' : color.toLowerCase().replaceAll(' ', '-');
       const model = name.replace('″', '').replace(' (M5)', '').toLowerCase().replaceAll(' ', '-');
-      photo.src = '../assets/' + model + '-' + finish + (family === 'iPad' ? '-cutout' : '') + '.webp';
+      photo.src = new URL(model + '-' + finish + (family === 'iPad' ? '-cutout' : '') + '.webp', assetsUrl).href;
       photo.alt = name + ' — ' + color;
     }
 
