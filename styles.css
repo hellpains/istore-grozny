@@ -3,8 +3,8 @@ body { margin: 0; color: #1d1d1f; background: #fff; font: 16px/1.5 -apple-system
 a { color: inherit; }
 a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #2859ba; outline-offset: 4px; }
 .shell { width: min(1280px, 100% - 48px); margin-inline: auto; }
-html { scroll-padding-top: var(--site-header-height, 0px); }
-.site-header { position: sticky; top: 0; z-index: 20; background: #000; color: #fff; border-bottom: 1px solid #18181a; box-shadow: 0 3px 8px rgb(0 0 0 / 14%); }
+html { background: #000; scroll-padding-top: var(--site-header-height, 0px); }
+.site-header { padding-top: env(safe-area-inset-top, 0px); position: sticky; top: 0; z-index: 20; background: #000; color: #fff; border-bottom: 1px solid #18181a; box-shadow: 0 3px 8px rgb(0 0 0 / 14%); }
 .site-header .brand { border: 1.5px solid #fff; border-radius: 9px; padding: 3px; }
 .site-header a:focus-visible { outline-color: #fff; }
 .header-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-block: 18px; }
@@ -38,7 +38,7 @@ p { margin: 14px 0 22px; }
 .products label { display: block; margin-bottom: 6px; }
 input { font: inherit; padding: 10px 12px; border: 1px solid #c8c8cb; border-radius: 10px; width: min(100%, 360px); }
 .muted { color: #515155; }
-.site-footer { background: #000; color: #fff; border-top: 1px solid #454549; }
+.site-footer { padding-bottom: env(safe-area-inset-bottom, 0px); background: #000; color: #fff; border-top: 1px solid #454549; }
 .site-footer a:focus-visible { outline-color: #fff; }
 .footer { display: grid; justify-items: center; gap: 20px; padding-block: 22px; }
 .site-footer .brand { display: block; padding: 3px; border: 1.5px solid #fff; border-radius: 9px; }
@@ -527,3 +527,12 @@ a.category { text-decoration: none; }
 .macbook-configurator .delivery-actions { margin-top: 10px; }
 
 
+
+.category:is([data-category="macbook"], [data-category="ipad"]) .category-visual {
+  background: linear-gradient(135deg, #eef0f3, #e6ebf4);
+}
+.category:is([data-category="macbook"], [data-category="ipad"]) .category-visual img {
+  object-fit: contain;
+  padding: 8%;
+  transform: none;
+}

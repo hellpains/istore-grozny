@@ -1,7 +1,7 @@
 const categories = [
   { id: 'iphone', name: 'iPhone', image: 'iphone-category.png', models: ['iPhone 17 Pro', 'iPhone 17', 'iPhone 16'] },
-  { id: 'macbook', name: 'MacBook', models: ['MacBook Air', 'MacBook Pro'] },
-  { id: 'ipad', name: 'iPad', models: ['iPad Air', 'iPad mini'] },
+  { id: 'macbook', name: 'MacBook', cardImage: 'macbook-air-13-blue.webp', models: ['MacBook Air', 'MacBook Pro'] },
+  { id: 'ipad', name: 'iPad', cardImage: 'ipad-pro-11-space-black-cutout.webp', models: ['iPad Air', 'iPad mini'] },
   { id: 'airpods', name: 'AirPods', models: ['AirPods Pro', 'AirPods Max'] },
   { id: 'watch', name: 'Apple Watch', image: 'watch-ultra.png', models: ['Apple Watch Ultra 4', 'Apple Watch Series'] },
   { id: 'garmin', name: 'Garmin', models: ['Часы Garmin'], image: 'garmin.png' },

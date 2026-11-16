@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Варианты выбора AirPods</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #eceef2; color: #1d1d1f; font: 15px system-ui, sans-serif; }
+main { max-width: 1360px; margin: auto; padding: 16px; }
+h1 { font-size: 25px; }
+h2 { margin: 0 0 10px; font-size: 16px; }
+#variants { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr)); gap: 14px; }
+article { min-width: 0; padding: 14px; border: 1px solid #dce0e6; border-radius: 17px; background: #fff; }
+.picker { display: flex; gap: 5px; }
+button, select { font: inherit; color: inherit; }
+button { min-height: 40px; border: 0; padding: 6px 8px; background: transparent; cursor: pointer; transition: transform 160ms cubic-bezier(.23, 1, .32, 1); }
+button:active { transform: scale(.97); }
+button:focus-visible, select:focus-visible { outline: 2px solid #0066d6; outline-offset: 2px; }
+.picker > button { flex: 1; font-size: 13px; }
+.product { margin-block: 10px 0; text-align: center; }
+.product img { display: block; width: 100%; height: 135px; object-fit: contain; margin-bottom: 6px; }
+figcaption { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
+figcaption span { white-space: nowrap; }
+.glass .picker { padding: 4px; border: 1px solid #dbe0e8; border-radius: 14px; background: linear-gradient(150deg,#fbfcfe,#e5eaf1); }
+.glass button[aria-pressed=true] { border-radius: 10px; background: #fff; box-shadow: 0 2px 5px #24385725; }
+.dark .picker { padding: 4px; background: #242426; color: #fff; border-radius: 14px; }
+.dark button[aria-pressed=true] { color: #151518; background: #f7f7f9; border-radius: 10px; }
+.line .picker { gap: 0; border-bottom: 1px solid #dedee3; }
+.line button[aria-pressed=true] { box-shadow: inset 0 -2px #0066d6; color: #005dbf; }
+.grid .picker { display: grid; grid-template-columns: repeat(2,1fr); }
+.grid button { border-radius: 10px; background: #f4f4f6; }
+.grid button[aria-pressed=true] { background: #e0eeff; color: #16477a; }
+.thumbs button { min-width: 0; border: 1px solid #e0e4eb; border-radius: 10px; }
+.thumbs button[aria-pressed=true] { border-color: #8db8eb; background: #edf5ff; }
+.thumbs button img { display: block; width: 100%; height: 30px; object-fit: contain; margin-bottom: 4px; }
+.list .picker { display: grid; }
+.list button { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; text-align: left; }
+.list button[aria-pressed=true] { color: #005dbf; font-weight: 650; }
+.select select { width: 100%; min-height: 44px; border: 1px solid #cdd6e4; border-radius: 10px; background: #f3f6fa; padding: 6px 10px; }
+.pills .picker { flex-wrap: wrap; }
+.pills button { flex: 0 1 auto; padding-inline: 11px; border: 1px solid #dfe2e7; border-radius: 999px; }
+.pills button[aria-pressed=true] { color: #fff; background: #0066d6; border-color: #0066d6; }
+.split .picker { display: grid; grid-template-columns: repeat(3, 1fr); }
+.split button { border-radius: 10px; background: #f1f2f5; }
+.split button:last-child { grid-column: 1 / -1; }
+.split button[aria-pressed=true] { box-shadow: inset 0 0 0 1px #8db8eb; background: #e9f2ff; }
+.step .picker { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; text-align: center; }
+.step button { border: 1px solid #dfe2e7; border-radius: 50%; font-size: 20px; }
+@media (prefers-reduced-motion: reduce) { button { transition: none; } button:active { transform: none; } }
+</style>
+<main>
+<h1>Выбор AirPods</h1>
+<div id="variants"></div>
+</main>
+<script src="../airpods/models.js"></script>
+<script>
+const designs = [
+  ['glass', 'Светлое стекло'], ['dark', 'Графитовая панель'],
+  ['line', 'Вкладки с линией'], ['grid', 'Сетка 2 × 2'],
+  ['thumbs', 'Карточки с фото'], ['list', 'Список с ценами'],
+  ['select', 'Выпадающий выбор'], ['pills', 'Отдельные плашки'],
+  ['split', 'Max 2 отдельной строкой'], ['step', 'Листание стрелками'],
+];
+const models = seriesPriceStock.filter(([name]) => name !== 'AirPods 4 (ANC)');
+const prices = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 });
+function photo(name, color) {
+  return '../assets/' + (name + ' ' + color).toLowerCase().replaceAll(' ', '-') + '.webp';
+}
+for (const [style, title] of designs) {
+  const card = document.createElement('article');
+  card.className = style;
+  card.innerHTML = '<h2></h2><div class="picker" role="group" aria-label="Модель AirPods"></div><figure class="product"><img alt=""><figcaption><strong></strong><span></span></figcaption></figure>';
+  card.querySelector('h2').textContent = title;
+  const picker = card.querySelector('.picker');
+  const photoElement = card.querySelector('.product img');
+  let current = 0;
+  function select(index) {
+    current = (index + models.length) % models.length;
+    const [name, , [[, color, price]]] = models[current];
+    photoElement.src = photo(name, color);
+    photoElement.alt = name + ', ' + color;
+    card.querySelector('figcaption strong').textContent = name;
+    card.querySelector('figcaption span').textContent = prices.format(price);
+    for (const button of picker.querySelectorAll('[data-index]')) {
+      button.setAttribute('aria-pressed', String(Number(button.dataset.index) === current));
+    }
+    const stepLabel = picker.querySelector('.step-label');
+    if (stepLabel) stepLabel.textContent = name;
+  }
+  if (style === 'select') {
+    const dropdown = document.createElement('select');
+    dropdown.setAttribute('aria-label', 'Модель AirPods');
+    models.forEach(([name], index) => dropdown.add(new Option(name, index)));
+    dropdown.addEventListener('change', () => select(dropdown.selectedIndex));
+    picker.append(dropdown);
+  } else if (style === 'step') {
+    picker.innerHTML = '<button type="button" aria-label="Предыдущая модель">‹</button><span class="step-label" aria-live="polite"></span><button type="button" aria-label="Следующая модель">›</button>';
+    const [prev, next] = picker.querySelectorAll('button');
+    prev.onclick = () => select(current - 1);
+    next.onclick = () => select(current + 1);
+  } else {
+    models.forEach(([name, , [[, color, price]]], index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.index = index;
+      button.setAttribute('aria-label', name);
+      button.textContent = style === 'list' ? name : name.slice(8);
+      if (style === 'thumbs') {
+        const image = new Image();
+        image.src = photo(name, color);
+        image.alt = '';
+        button.prepend(image);
+      }
+      if (style === 'list') {
+        const amount = document.createElement('span');
+        amount.textContent = prices.format(price);
+        button.append(amount);
+      }
+      button.onclick = () => select(index);
+      picker.append(button);
+    });
+  }
+  select(0);
+  document.querySelector('#variants').append(card);
+}
+</script>
+</html>

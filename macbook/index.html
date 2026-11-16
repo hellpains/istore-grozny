@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   <base href="../">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
   <meta name="description" content="MacBook Air и MacBook Pro в iStoreGrozny.">
   <title>MacBook — iStoreGrozny</title>
-  <link rel="stylesheet" href="styles.css?v=macbook-single-photo">
-  <link rel="stylesheet" href="iphone/configurator.css?v=trade-in-dialog">
+  <link rel="stylesheet" href="styles.css?v=black-safe-area">
+  <link rel="stylesheet" href="iphone/configurator.css?v=macbook-photo-90">
   <script src="macbook/models.js?v=model-summary" defer></script>
   <script src="header.js" defer></script>
 </head>
-<body data-view="series">
+<body data-view="series" data-family="MacBook">
   <header class="site-header" id="home">
     <div class="shell header-row">
       <a class="brand" href="./"><img src="assets/logo-white.png" alt="iStoreGrozny — главная" width="174" height="60"></a>
@@ -48,9 +49,9 @@
     </nav>
     <section class="macbook-configurator" aria-label="Модели MacBook">
       <div class="series-model-picker" role="group" aria-label="Выбор MacBook">
-        <button type="button" data-model="air" aria-pressed="true">MacBook Air</button>
-        <button type="button" data-model="neo" aria-pressed="false">MacBook Neo</button>
-        <button type="button" data-model="pro" aria-pressed="false">MacBook Pro</button>
+        <button type="button" data-model="air" aria-pressed="true"><img src="assets/macbook-air-13-blue.webp" alt="" width="64" height="30">MacBook Air</button>
+        <button type="button" data-model="neo" aria-pressed="false"><img src="assets/macbook-neo-13-blush.webp" alt="" width="64" height="30">MacBook Neo</button>
+        <button type="button" data-model="pro" aria-pressed="false"><img src="assets/macbook-pro-14-space-black.webp" alt="" width="64" height="30">MacBook Pro</button>
       </div>
       <figure class="macbook-photo">
         <img src="assets/macbook-air-13-blue.webp" alt="MacBook Air 13″ — Blue" width="218" height="205">

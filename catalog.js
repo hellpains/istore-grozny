@@ -35,14 +35,14 @@ function renderResults(models, query, results) {
 }
 
 for (const category of categories) {
-  const hasCategoryPage = ['iphone', 'macbook', 'ipad'].includes(category.id);
+  const hasCategoryPage = ['iphone', 'macbook', 'ipad', 'airpods'].includes(category.id);
   const button = document.createElement(hasCategoryPage ? 'a' : 'button');
   button.className = 'category';
   button.dataset.category = category.id;
 
 
   const photo = document.createElement('img');
-  photo.src = 'assets/' + (category.image ?? category.id + '.jpg');
+  photo.src = 'assets/' + (category.cardImage ?? category.image ?? category.id + '.jpg');
   photo.alt = '';
   photo.width = 218;
   photo.height = 205;

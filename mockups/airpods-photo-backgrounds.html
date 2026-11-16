@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пять фонов для фото AirPods</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f5f5f7; color: #1d1d1f; font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+main { width: min(1260px, 100% - 32px); margin: 24px auto 40px; }
+h1 { margin: 0 0 18px; font-size: clamp(23px, 5vw, 34px); }
+.examples { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+figure { min-width: 0; margin: 0; padding: 10px; border: 1px solid #e1e3e8; border-radius: 16px; background: #fff; }
+.scene { position: relative; isolation: isolate; display: grid; place-items: center; aspect-ratio: 1; overflow: hidden; border-radius: 11px; }
+.scene img { width: 68%; height: 68%; object-fit: contain; transform: translateY(-4%); filter: drop-shadow(5px 13px 11px rgb(17 24 39 / 23%)); }
+.scene::before { content: ""; position: absolute; z-index: -1; bottom: 15%; left: 23%; right: 23%; height: 10%; background: radial-gradient(ellipse, rgb(17 24 39 / 40%), transparent 72%); filter: blur(6px); }
+.silver { background: #b5bbc5; }
+.blue { background: #92adce; }
+.graphite { background: #343941; }
+.warm { background: #c5b2a0; }
+.pedestal { background: #a7aab5; }
+.pedestal::before { left: 14%; right: 14%; bottom: 11%; height: 24%; border-radius: 50%; background: #777d90; box-shadow: 0 13px 0 #686e80, 0 18px 16px #30364660; filter: none; }
+figcaption { padding: 9px 2px 1px; font-weight: 650; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Фоны для фото AirPods</h1>
+  <div class="examples">
+    <figure><div class="scene silver"><img src="../assets/airpods-4-white.webp" alt="Белые AirPods на серебристом фоне"></div><figcaption>1. Матовое серебро</figcaption></figure>
+    <figure><div class="scene blue"><img src="../assets/airpods-4-white.webp" alt="Белые AirPods на голубом фоне"></div><figcaption>2. Приглушённый голубой</figcaption></figure>
+    <figure><div class="scene graphite"><img src="../assets/airpods-4-white.webp" alt="Белые AirPods на графитовом фоне"></div><figcaption>3. Графит</figcaption></figure>
+    <figure><div class="scene warm"><img src="../assets/airpods-4-white.webp" alt="Белые AirPods на тёплом серо-бежевом фоне"></div><figcaption>4. Тёплый серо-бежевый</figcaption></figure>
+    <figure><div class="scene pedestal"><img src="../assets/airpods-4-white.webp" alt="Белые AirPods над подставкой"></div><figcaption>5. Подставка с эффектом парения</figcaption></figure>
+  </div>
+</main>
+</body>
+</html>

@@ -6,10 +6,19 @@ if (document.body.dataset.view === 'series') {
 
   const assetsUrl = new URL('../assets/', document.currentScript.src);
   const family = document.body.dataset.family || 'iPhone';
-  const seriesStock = family === 'iPad' ? ipadStock : iphoneStock;
+  const seriesStock = family === 'AirPods'
+    ? seriesPriceStock.filter(([name]) => name !== 'AirPods 4 (ANC)').map(entry => {
+        if (entry[0] !== 'AirPods 4') return entry;
+        const anc = seriesPriceStock.find(([name]) => name === 'AirPods 4 (ANC)');
+        return [entry[0], entry[1], [
+          ...entry[2].map(([, color, price]) => ['Без шумоподавления', color, price]),
+          ...anc[2].map(([, color, price]) => ['С шумоподавлением (ANC)', color, price]),
+        ]];
+      })
+    : seriesPriceStock;
   const priceGroups = [...iphoneModels.children];
   const swatches = {
-    Pink: '#e7a8bd', 'Space Black': '#38383b', Burgundy: '#541c27', Blue: '#a1bddc', Silver: '#f4f4f4', Black: '#383838',
+    Purple: '#a99abf', Midnight: '#303642', Starlight: '#e9dfcf', Pink: '#e7a8bd', 'Space Black': '#38383b', Burgundy: '#541c27', Blue: '#a1bddc', Silver: '#f4f4f4', Black: '#383838',
     Orange: '#e67735', White: '#f9f9f9', Sage: '#b6c4ad', Lavender: '#cbc0e1',
     'Cloud Black': '#383838', 'Cloud White': '#f9f9f9',
     'Light Gold': '#ecdfbd', 'Sky Blue': '#dcecfb',
@@ -19,29 +28,75 @@ if (document.body.dataset.view === 'series') {
   picker.className = 'series-model-picker';
   picker.setAttribute('role', 'group');
   picker.setAttribute('aria-label', 'Модель ' + family);
-  iphoneModels.before(picker);
+  const groupBySeries = document.body.dataset.family === 'iPhone';
+  const seriesPicker = document.createElement('div');
+  const seriesButtons = new Map();
+  const modelOptions = [];
+  if (groupBySeries) {
+    seriesPicker.className = 'series-model-picker iphone-generation-picker';
+    seriesPicker.setAttribute('role', 'group');
+    seriesPicker.setAttribute('aria-label', 'Серия iPhone');
+    picker.className = 'series-model-picker iphone-variant-picker';
+    iphoneModels.before(seriesPicker);
+  } else {
+    iphoneModels.before(picker);
+  }
   for (const [name, sim, variants] of [...seriesStock].sort((a, b) =>
-    Number(b[0].includes('18')) - Number(a[0].includes('18')) || a[0].localeCompare(b[0])
+    Number(b[0].includes('18')) - Number(a[0].includes('18')) ||
+    a[0].localeCompare(b[0])
   )) {
     const row = document.createElement('li');
     const modelButton = document.createElement('button');
     const first = !picker.children.length;
+    const isAir = name === 'iPhone 17 Air';
+    const generation = isAir ? 'iPhone Air' : name.split(' ').slice(0, 2).join(' ');
     modelButton.type = 'button';
-    modelButton.textContent = family === 'iPad' ? name.replace(' (M5)', '').replace('″', '') : name.slice(family.length + 1);
+    modelButton.textContent = family === 'iPad' ? name.replace(' (M5)', '').replace('″', '') : family === 'AirPods' ? name.slice(family.length + 1) : name;
+
+    if (groupBySeries) modelButton.textContent = name.slice(family.length + 1);
     modelButton.setAttribute('aria-pressed', String(first));
     row.hidden = !first;
 
     modelButton.addEventListener('click', () => {
       for (const button of picker.children) button.setAttribute('aria-pressed', String(button === modelButton));
       for (const panel of iphoneModels.children) panel.hidden = panel !== row;
+      if (groupBySeries) {
+        for (const [label, button] of seriesButtons) button.setAttribute('aria-pressed', String(label === generation));
+        for (const option of modelOptions) option.button.hidden = option.generation !== generation;
+        const restoreFocus = document.activeElement === modelButton;
+        if (!isAir) row.querySelector('.series-glass-panel').prepend(picker);
+        if (restoreFocus) modelButton.focus();
+      }
     });
     picker.append(modelButton);
+    if (groupBySeries) {
+      modelOptions.push({ generation, button: modelButton, inStock: variants.length > 0 });
+      if (!seriesButtons.has(generation)) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = generation;
+        button.addEventListener('click', () => { const available = modelOptions.find(option => option.generation === generation && option.inStock); (available?.button ?? modelButton).click(); });
+        seriesButtons.set(generation, button);
+        seriesPicker.append(button);
+      }
+    }
 
     const photo = document.createElement('img');
     photo.className = 'series-photo';
+    if (name === 'AirPods Max 2') photo.classList.add('airpods-max-photo');
     photo.loading = 'lazy';
-    let color = variants[0][1];
-    let storage = variants[0][0];
+    let color = variants[0]?.[1];
+    const thumbnail = new Image();
+    if (!groupBySeries) {
+      thumbnail.alt = '';
+      modelButton.setAttribute('aria-label', name);
+      const brand = document.createElement('span');
+      brand.style.display = 'block';
+      brand.textContent = family;
+      if (family === 'AirPods') modelButton.prepend(brand, thumbnail);
+      else modelButton.prepend(thumbnail);
+    }
+    let storage = variants[0]?.[0];
     const colors = [...new Set(variants.map(variant => variant[1]))];
     const price = document.createElement('p');
     price.className = 'series-price';
@@ -74,10 +129,12 @@ if (document.body.dataset.view === 'series') {
       'iPhone 17 Pro': ['256 ГБ', '512 ГБ', '1 ТБ'],
       'iPhone 17': ['256 ГБ', '512 ГБ'],
       'iPhone 17 Air': ['256 ГБ', '512 ГБ', '1 ТБ'],
-    }[name] ?? [...new Set(variants.map(([capacity]) => capacity))];
-    storage ||= storageOptions[0];
-    const storagePicker = createPicker('Память');
+    }[name] ?? [...new Set(variants.map(([capacity]) => capacity).filter(Boolean))];
+    if (storageOptions.length) storage ||= storageOptions[0];
+    const storagePicker = createPicker(family === 'AirPods' ? 'Версия' : 'Память');
     storagePicker.className = 'series-storage';
+    if (family === 'AirPods') storagePicker.classList.add('airpods-versions');
+    storagePicker.hidden = storageOptions.length === 0;
 
     function createPicker(label) {
       const picker = document.createElement('fieldset');
@@ -92,7 +149,7 @@ if (document.body.dataset.view === 'series') {
       button.type = 'button';
       if (picker === colorPicker) {
         button.style.setProperty('--swatch', swatches[value]);
-        if (['Burgundy', 'Black', 'Cloud Black', 'Space Black'].includes(value)) {
+        if (['Burgundy', 'Black', 'Cloud Black', 'Space Black', 'Midnight'].includes(value)) {
           button.style.setProperty('--swatch-check', '#fff');
         }
         button.setAttribute('aria-label', value);
@@ -101,7 +158,7 @@ if (document.body.dataset.view === 'series') {
         label.textContent = value;
         button.append(label);
       } else {
-        button.textContent = value;
+        button.textContent = value === 'С шумоподавлением (ANC)' ? 'С шумоподавлением' : value;
         if (amount == null) {
           button.setAttribute('aria-label', value + ' — Нет в наличии');
         }
@@ -115,15 +172,17 @@ if (document.body.dataset.view === 'series') {
       const finish = name.startsWith('iPhone 18 Pro') && color === 'Blue'
         ? 'glacier' : color.toLowerCase().replaceAll(' ', '-');
       const model = name.replace('″', '').replace(' (M5)', '').toLowerCase().replaceAll(' ', '-');
-      photo.src = new URL(model + '-' + finish + (family === 'iPad' ? '-cutout' : '') + '.webp', assetsUrl).href;
+      const image = model + '-' + finish + (family === 'iPad' ? '-cutout' : '') + '.webp';
+      photo.src = new URL(image, assetsUrl).href;
       photo.alt = name + ' — ' + color;
+      if (!groupBySeries) thumbnail.src = new URL(image, assetsUrl).href;
     }
 
     function render() {
       for (const picker of [colorPicker, storagePicker]) {
         picker.querySelectorAll('button').forEach(button => button.remove());
       }
-      renderPhoto();
+      if (variants.length) renderPhoto();
       finishLabel.textContent = color;
       const available = variants.filter(variant => variant[1] === color);
       for (const value of colors) option(colorPicker, value, value === color, () => { color = value; render(); });
@@ -133,7 +192,7 @@ if (document.body.dataset.view === 'series') {
       }
       const variant = available.find(item => item[0] === storage);
       const simLabel = variant?.[3] || sim;
-      const details = [color, storage, simLabel === 'Физическая SIM' ? 'SIM' : simLabel].filter(Boolean);
+      const details = [color, storage === 'С шумоподавлением (ANC)' ? 'ANC' : storage, simLabel === 'Физическая SIM' ? 'SIM' : simLabel].filter(Boolean);
       configuration.replaceChildren();
       details.forEach((detail, index) => {
         if (index) {
@@ -176,11 +235,15 @@ if (document.body.dataset.view === 'series') {
     tradeIn.setAttribute('aria-haspopup', 'dialog');
     tradeIn.addEventListener('click', () => tradeInDialog.showModal());
     tradeIn.textContent = 'Trade-in';
-    panelTop.append(options, tradeIn);
+    if (colors.length) panelTop.append(options);
+    if (family !== 'AirPods') panelTop.append(tradeIn);
     panel.append(panelTop, storagePicker, price, warranty);
-    row.append(layout, panel);
+    if (variants.length) row.append(layout);
+    row.append(panel);
     iphoneModels.append(row);
   }
+
+  if (groupBySeries) seriesPicker.firstElementChild.click();
 
   const openPrices = document.createElement('button');
   openPrices.type = 'button';

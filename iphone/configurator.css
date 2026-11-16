@@ -190,8 +190,90 @@
 .series-trade-in-content { min-height: 0; overflow-y: auto; }
 
 [data-family="iPad"] .series-layout .series-photo {
+  transform: scale(.85);
   width: 100%;
   aspect-ratio: 1;
   max-height: 460px;
   padding: 0;
 }
+
+[data-view=series] .airpods-versions:not([hidden]) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+[data-view=series] .airpods-versions button { white-space: normal; padding-inline: 6px; }
+
+:is([data-family="AirPods"], [data-family="iPad"], [data-family="MacBook"], [data-family="iPhone"]) .iphone-page .series-model-picker {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+  margin-inline: 0;
+  padding: 3px;
+  border: 0;
+  background: transparent;
+}
+:is([data-family="AirPods"], [data-family="iPad"], [data-family="MacBook"], [data-family="iPhone"]) .series-model-picker button {
+  min-width: 0;
+  padding: 6px 3px;
+  border: 1px solid #e0e4eb;
+  border-radius: 10px;
+  white-space: normal;
+  font-size: 13px;
+}
+:is([data-family="AirPods"], [data-family="iPad"], [data-family="MacBook"], [data-family="iPhone"]) .series-model-picker button[aria-pressed=true] {
+  border-color: #8db8eb;
+  background: #edf5ff;
+}
+:is([data-family="AirPods"], [data-family="iPad"], [data-family="MacBook"], [data-family="iPhone"]) .series-model-picker img {
+  display: block;
+  width: 100%;
+  height: 30px;
+  margin-bottom: 4px;
+  object-fit: contain;
+}
+
+:is([data-family="iPad"], [data-family="MacBook"], [data-family="iPhone"]) .iphone-page .series-model-picker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.series-layout, .macbook-photo {
+  padding: 12px;
+  border-radius: 24px;
+  border: 1px solid #dce2eb;
+  background: linear-gradient(145deg, #fbfcfe, #e4e9f1);
+  box-shadow: inset 0 1px 0 #fff, 0 3px 10px rgb(29 38 55 / 8%);
+}
+.series-layout .series-photo { background: transparent; }
+[data-family="AirPods"] .series-layout {
+  position: relative; container-type: inline-size;
+  isolation: isolate;
+}
+[data-family="AirPods"] .series-layout::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: auto 23% 12% 23%;
+  height: 9%;
+  background: radial-gradient(ellipse, rgb(29 38 55 / 28%), transparent 72%);
+  filter: blur(7px);
+  pointer-events: none;
+}
+[data-family="AirPods"] .series-layout .series-photo {
+  background: transparent;
+  margin-block: calc(-0.14 * (min(135cqw, 378px) + 26px));
+  transform: translateY(-12px) scale(var(--airpods-photo-scale, .64));
+  filter: drop-shadow(6px 16px 13px rgb(29 38 55 / 19%));
+}
+
+
+[data-family="AirPods"] .series-model-picker button:not([aria-pressed="true"]) {
+  background: transparent;
+}
+
+[data-family="iPhone"] .series-layout .series-photo { transform: scale(.9); }
+
+[data-family="iPhone"] .iphone-page .iphone-generation-picker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.iphone-generation-picker + .iphone-models { margin-top: 10px; }
+[data-family="iPhone"] .iphone-page .iphone-variant-picker { display: flex; flex-wrap: wrap; padding: 0; margin-bottom: 10px; }
+[data-family="iPhone"] .iphone-variant-picker button { flex: 1 1 0; padding-inline: 4px; }
+[data-family="iPhone"] .iphone-variant-picker button[hidden] { display: none; }
+[data-family="iPhone"] .iphone-variant-picker button[aria-pressed=false] { border-color: #aeb2bb; }
+
+.macbook-photo img { transform: scale(.9); }
+
+[data-family="AirPods"] .airpods-max-photo { --airpods-photo-scale: .9216; }

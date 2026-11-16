@@ -34,6 +34,11 @@ for (const [name, sim, variants] of seriesPriceStock) {
     row.append(label, amount);
     list.append(row);
   }
+  if (!variants.length) {
+    const row = document.createElement('li');
+    row.textContent = 'Нет в наличии';
+    list.append(row);
+  }
   group.append(list);
   iphoneModels.append(group);
 }
