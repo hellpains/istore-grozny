@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#000000">
   <meta name="description" content="Товары iStoreGrozny. Уточняйте цены и наличие в магазине.">
   <title>iPad — iStoreGrozny</title>
-  <link rel="stylesheet" href="styles.css?v=black-safe-area">
+  <link rel="stylesheet" href="styles.css?v=black-safari-toolbar">
   <script src="catalog-data.js" defer></script>
   <script src="ipad/models.js" defer></script>
   <script src="series-prices.js" defer></script>
@@ -16,6 +16,7 @@
   <script src="header.js" defer></script>
 </head>
 <body data-view="series" data-family="iPad">
+  <!-- shared:header -->
   <header class="site-header" id="home">
     <div class="shell header-row">
       <a class="brand" href="./"><img src="assets/logo-white.png" alt="iStoreGrozny — главная" width="174" height="60"></a>
@@ -44,6 +45,8 @@
       <div class="menu-shade" aria-hidden="true"></div>
     </div>
   </header>
+  <!-- /shared:header -->
+  <div class="site-content">
   <main class="shell product-page iphone-page">
     <nav class="iphone-breadcrumb" aria-label="Путь к странице">
       <a href="./">Главная</a>
@@ -54,6 +57,8 @@
       <ul id="iphone-models" class="iphone-models"></ul>
     </section>
   </main>
+  </div>
+  <!-- shared:footer -->
   <footer class="site-footer">
     <div class="shell footer">
       <a class="brand" href="./"><img src="assets/logo-white.png" alt="iStoreGrozny — главная" width="194" height="80"></a>
@@ -93,6 +98,7 @@
       <p class="footer-copyright">© 2026 <strong>·</strong> iStoreGrozny — Твой лучший магазин Apple в Грозном</p>
     </div>
   </footer>
+  <!-- /shared:footer -->
 </body>
 </html>
 

@@ -1,7 +1,8 @@
 * { box-sizing: border-box; }
-body { margin: 0; color: #1d1d1f; background: #fff; font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+body { margin: 0; color: #1d1d1f; background: #000; font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
 a { color: inherit; }
 a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid #2859ba; outline-offset: 4px; }
+.site-content { display: flow-root; background: #fff; }
 .shell { width: min(1280px, 100% - 48px); margin-inline: auto; }
 html { background: #000; scroll-padding-top: var(--site-header-height, 0px); }
 .site-header { padding-top: env(safe-area-inset-top, 0px); position: sticky; top: 0; z-index: 20; background: #000; color: #fff; border-bottom: 1px solid #18181a; box-shadow: 0 3px 8px rgb(0 0 0 / 14%); }
